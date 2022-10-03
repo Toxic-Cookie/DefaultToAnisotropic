@@ -6,14 +6,14 @@ using System.Reflection;
 
 [assembly: AssemblyTitle("DefaultToAnisotropic")]
 [assembly: AssemblyProduct("DefaultToAnisotropic")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyFileVersion("1.2.0.0")]
 
 class DefaultToAnisotropic : NeosMod
 {
     public override string Name => "DefaultToAnisotropic";
-    public override string Author => "Toxic_Cookie";
-    public override string Version => "1.1.0";
+    public override string Author => "Toxic_Cookie, eia485";
+    public override string Version => "1.2.0";
     public override string Link => "https://github.com/Toxic-Cookie/DefaultToAnisotropic";
 
     // configurations for StaticTextureProvider<Texture2D, Bitmap2D, BitmapMetadata, Texture2DVariantDescriptor>
@@ -50,25 +50,26 @@ class DefaultToAnisotropic : NeosMod
     {
         private static void Postfix(IAssetProvider<Texture2D> texture)
         {
-            StaticTexture2D textureprovider = (StaticTexture2D)texture;
+            if (texture is StaticTexture2D textureprovider)
+            {
+                ApplySetting(FilterMode, textureprovider.FilterMode);
+                ApplySetting(AnisotropicLevel, textureprovider.AnisotropicLevel);
+                ApplySetting(Uncompressed, textureprovider.Uncompressed);
+                ApplySetting(DirectLoad, textureprovider.DirectLoad);
+                ApplySetting(ForceExactVariant, textureprovider.ForceExactVariant);
+                ApplySetting(PreferredFormat, textureprovider.PreferredFormat);
+                ApplySetting(MipMapBias, textureprovider.MipMapBias);
 
-            ApplySetting(FilterMode, textureprovider.FilterMode);
-            ApplySetting(AnisotropicLevel, textureprovider.AnisotropicLevel);
-            ApplySetting(Uncompressed, textureprovider.Uncompressed);
-            ApplySetting(DirectLoad, textureprovider.DirectLoad);
-            ApplySetting(ForceExactVariant, textureprovider.ForceExactVariant);
-            ApplySetting(PreferredFormat, textureprovider.PreferredFormat);
-            ApplySetting(MipMapBias, textureprovider.MipMapBias);
-
-            ApplySetting(IsNormalMap, textureprovider.IsNormalMap);
-            ApplySetting(WrapModeU, textureprovider.WrapModeU);
-            ApplySetting(WrapModeV, textureprovider.WrapModeV);
-            ApplySetting(PowerOfTwoAlignThreshold, textureprovider.PowerOfTwoAlignThreshold);
-            ApplySetting(CrunchCompressed, textureprovider.CrunchCompressed);
-            ApplySetting(MaxSize, textureprovider.MaxSize);
-            ApplySetting(MipMaps, textureprovider.MipMaps);
-            ApplySetting(MipMapFilter, textureprovider.MipMapFilter);
-            ApplySetting(Readable, textureprovider.Readable);
+                ApplySetting(IsNormalMap, textureprovider.IsNormalMap);
+                ApplySetting(WrapModeU, textureprovider.WrapModeU);
+                ApplySetting(WrapModeV, textureprovider.WrapModeV);
+                ApplySetting(PowerOfTwoAlignThreshold, textureprovider.PowerOfTwoAlignThreshold);
+                ApplySetting(CrunchCompressed, textureprovider.CrunchCompressed);
+                ApplySetting(MaxSize, textureprovider.MaxSize);
+                ApplySetting(MipMaps, textureprovider.MipMaps);
+                ApplySetting(MipMapFilter, textureprovider.MipMapFilter);
+                ApplySetting(Readable, textureprovider.Readable);
+            }
         }
     }
 
