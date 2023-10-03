@@ -1,19 +1,19 @@
-﻿using CodeX;
+﻿using Elements.Assets;
 using FrooxEngine;
 using HarmonyLib;
-using NeosModLoader;
+using ResoniteModLoader;
 using System.Reflection;
 
 [assembly: AssemblyTitle("DefaultToAnisotropic")]
 [assembly: AssemblyProduct("DefaultToAnisotropic")]
-[assembly: AssemblyVersion("1.2.0.0")]
-[assembly: AssemblyFileVersion("1.2.0.0")]
+[assembly: AssemblyVersion("1.3.0.0")]
+[assembly: AssemblyFileVersion("1.3.0.0")]
 
-class DefaultToAnisotropic : NeosMod
+class DefaultToAnisotropic : ResoniteMod
 {
     public override string Name => "DefaultToAnisotropic";
     public override string Author => "Toxic_Cookie, eia485";
-    public override string Version => "1.2.0";
+    public override string Version => "1.3.0";
     public override string Link => "https://github.com/Toxic-Cookie/DefaultToAnisotropic";
 
     // configurations for StaticTextureProvider<Texture2D, Bitmap2D, BitmapMetadata, Texture2DVariantDescriptor>
