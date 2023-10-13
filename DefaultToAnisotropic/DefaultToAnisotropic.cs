@@ -6,14 +6,14 @@ using System.Reflection;
 
 [assembly: AssemblyTitle("DefaultToAnisotropic")]
 [assembly: AssemblyProduct("DefaultToAnisotropic")]
-[assembly: AssemblyVersion("1.3.0.0")]
-[assembly: AssemblyFileVersion("1.3.0.0")]
+[assembly: AssemblyVersion("1.3.0.1")]
+[assembly: AssemblyFileVersion("1.3.0.1")]
 
 class DefaultToAnisotropic : ResoniteMod
 {
     public override string Name => "DefaultToAnisotropic";
     public override string Author => "Toxic_Cookie, eia485";
-    public override string Version => "1.3.0";
+    public override string Version => "1.3.1";
     public override string Link => "https://github.com/Toxic-Cookie/DefaultToAnisotropic";
 
     // configurations for StaticTextureProvider<Texture2D, Bitmap2D, BitmapMetadata, Texture2DVariantDescriptor>
@@ -50,7 +50,7 @@ class DefaultToAnisotropic : ResoniteMod
     {
         private static void Postfix(IAssetProvider<Texture2D> texture)
         {
-            if (texture is StaticTexture2D textureprovider)
+            if (texture is StaticTexture2D textureprovider && textureprovider.FilterMode.Value != TextureFilterMode.Point)
             {
                 ApplySetting(FilterMode, textureprovider.FilterMode);
                 ApplySetting(AnisotropicLevel, textureprovider.AnisotropicLevel);
